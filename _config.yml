@@ -15,18 +15,18 @@
 minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale: "en-US"
-title: "Site Title"
+locale: "ko-KR"
+title: "Muool"
 title_separator: "-"
 subtitle: # site tagline that appears below site title in masthead
-name: "Your Name"
-description: "An amazing website."
-url: https://ysjkof.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+name: "Muool blog"
+description: "description"
+url: "https://ysjkof.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl: # the subpath of your site, e.g. "/blog"
-repository: ysjkof/ysjkof.github.io # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository: "ysjkof/ysjkof.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser: # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo: # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title: # overrides the website title displayed in the masthead, use " " for no title
+masthead_title: "Muool" # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute: 200
 comments:
@@ -101,18 +101,18 @@ analytics:
 
 # Site Author
 author:
-  name: "Your Name"
+  name: "Muool"
   avatar: # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio: "I am an **amazing** person."
-  location: "Somewhere"
+  bio: "#물리치료 #해부학"
+  # location: "Republic of Korea"
   email:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
+      url: "mailto:muool.owner@email.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
+      url: "https://ysjkof.github.io"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       # url: "https://twitter.com/"
@@ -121,7 +121,7 @@ author:
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/ysjkof"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
@@ -137,7 +137,7 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
+      url: "https://github.com/ysjkof"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
@@ -209,6 +209,7 @@ sass:
   style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 
 # Outputting
+# 첫 화면 게시물 수
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
@@ -269,7 +270,7 @@ compress_html:
 defaults:
   # _posts
   - scope:
-      path: ""
+      path: "_pages"
       type: posts
     values:
       layout: single
