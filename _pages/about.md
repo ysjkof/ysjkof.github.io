@@ -1,13 +1,23 @@
 ---
-permalink: /about/
 title: "About"
+layout: single
+permalink: /about/
+author_profile: true
 toc: true
-toc_sticky: true
-toc_label: "MYSELF"
 ---
+
+# Hello
+
+it's english way, say hello
+
+## its about page
+
+lorem ipsul
+
+### just test
+
+just test
 
 ![icon](https://northwestphysio.com.au/wp-content/uploads/2019/11/1911_What-Can-I-Expect-From-a-Physio-Appointment.png)
 
-<!-- ![icon](/assets/logo.ico/apple-icon-120x120.png) -->
-
-원하는 자기소개 상세 내용
+ <!-- ![icon](/assets/logo.ico/apple-icon-120x120.png) -->
