@@ -1,12 +1,29 @@
 # main links
 main:
+  - title: "Doc"
+    url: /abcd/
   - title: "처음화면"
     url: /
   - title: "소개"
     url: /about/
   - title: "게시글"
-    url: /categories/
+    url: /category-archive/
   - title: "태그"
-    url: /tags/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+    url: /tag-archive/
+
+# documentation links
+docs:
+  - title: DOC TEST
+    children:
+      - title: "Quick-Start Guide"
+        url: /abcd/
+      - title: "Structure"
+        url: /docs/structure/
+
+sidebar-sample:
+  - title: "Parent Page A"
+    children:
+      - title: "Child Page A1"
+        url: /
+      - title: "Child Page A2"
+        url: /
