@@ -177,8 +177,6 @@ exclude:
   - Rakefile
   - README
   - tmp
-  - /docs # ignore Minimal Mistakes /docs
-  - /test # ignore Minimal Mistakes /test
 keep_files:
   - .git
   - .svn
@@ -271,6 +269,7 @@ defaults:
   # _posts
   - scope:
       path: ""
+      # 패쓰의 타입이  posts인 파일에만 레이아웃 적용됨.
       type: posts
     values:
       layout: single
@@ -279,18 +278,18 @@ defaults:
       comments: true
       share: true
       related: true
+      categories: 모두보기
       show_date: true
   # _pages
   - scope:
-      path: "_pages"
+      path: ""
       type: pages
     values:
       layout: single
       author_profile: true
   # _docs
   - scope:
-      path: ""
-      type: docs
+      path: "docs"
     values:
       layout: single
       read_time: false
@@ -299,29 +298,5 @@ defaults:
       comments: false
       sidebar:
         nav: "docs"
-  # _recipes
-  - scope:
-      path: ""
-      type: recipes
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comments: true
-  # _pets
-  - scope:
-      path: ""
-      type: pets
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comment: true
-  # _portfolio
-  - scope:
-      path: ""
-      type: portfolio
-    values:
-      layout: single
-      author_profile: false
-      share: true
+
+date_format: "%Y-%m-%d"

@@ -1,29 +1,47 @@
 # main links
 main:
-  - title: "Doc"
-    url: /abcd/
-  - title: "처음화면"
-    url: /
   - title: "소개"
     url: /about/
+  - title: "해부학"
+    url: /docs/00-document/
   - title: "게시글"
     url: /category-archive/
   - title: "태그"
     url: /tag-archive/
+  - title: "처음화면"
+    url: /
 
 # documentation links
 docs:
-  - title: DOC TEST
+  - title: Getting Started
     children:
-      - title: "Quick-Start Guide"
-        url: /abcd/
-      - title: "Structure"
-        url: /docs/structure/
+      - title: "시작하는 말"
+        url: /00-document/
 
-sidebar-sample:
-  - title: "Parent Page A"
+  - title: 상지
     children:
-      - title: "Child Page A1"
-        url: /
-      - title: "Child Page A2"
-        url: /
+      - title: "Configuration"
+        url: /docs/configuration/
+      - title: "Navigation"
+        url: /docs/navigation/
+
+  - title: 하지
+    children:
+      - title: "Working with Posts"
+        url: /docs/posts/
+      - title: "Working with Pages"
+        url: /docs/pages/
+
+  - title: 위 척추
+    children:
+      - title: "Stylesheets"
+        url: /docs/stylesheets/
+      - title: "JavaScript"
+        url: /docs/javascript/
+
+  - title: 아래 척추
+    children:
+      - title: "Stylesheets"
+        url: /docs/stylesheets/
+      - title: "JavaScript"
+        url: /docs/javascript/
