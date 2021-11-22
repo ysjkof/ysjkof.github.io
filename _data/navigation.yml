@@ -2,8 +2,8 @@
 main:
   - title: "소개"
     url: /about/
-  - title: "해부학"
-    url: /docs/00-document/
+  - title: "근육해부학"
+    url: /docs/00-intro/
   - title: "게시글"
     url: /category-archive/
   - title: "태그"
@@ -13,35 +13,62 @@ main:
 
 # documentation links
 docs:
-  - title: Getting Started
+  - title: 근육해부학
     children:
-      - title: "시작하는 말"
-        url: /00-document/
+      - title: "소개"
+        url: /docs/00-intro/
+  - title: 머리, 목
+    children:
+      - title: "등세모근"
+        url: /docs/trapezius-muscle/
+      - title: "목빗근"
+        url: /docs/sternocleidomastoid-muscle/
+      - title: "깨물근"
+        url: /docs/masseter-muscle/
+      - title: "관자근"
+        url: /docs/temporalis-muscle/
+      - title: "안쪽 날개근"
+        url: /docs/medial-pterygoid-muscle/
+      - title: "바깥쪽 날개근"
+        url: /docs/lateral-pterygoid-muscle/
+      - title: "Digastric Muscle and Other Anterior Neck Muscle"
+        url: /docs/digastric-muscle-and-other-anterior-neck-muscle/
+      - title: "Cutaneous 1"
+        url: /docs/cutaneous-1/
+      - title: "Cutaneous 2"
+        url: /docs/cutaneous-2/
+      - title: "Splenius Capitis and Splenius Cervicis Muscle"
+        url: /docs/splenius-capitis-and-splenius-cervicis-muscle/
+      - title: "Posterior Cervical Muscle:"
+        url: /docs/posterior-cervical-muscle/
+      - title: "Suboccipital Muscle:"
+        url: /docs/suboccipital-muscle/
 
-  - title: 상지
+  - title: 등, 어깨, 팔
     children:
-      - title: "Configuration"
-        url: /docs/configuration/
-      - title: "Navigation"
-        url: /docs/navigation/
-
-  - title: 하지
+      - title: "어깨올림근"
+        url: /docs/levator-scapulae-muscle/
+  - title: 아래팔, 손
     children:
-      - title: "Working with Posts"
-        url: /docs/posts/
-      - title: "Working with Pages"
-        url: /docs/pages/
-
-  - title: 위 척추
+      - title: "손폄근"
+        url: /docs/hand-extensor/
+      - title: "위팔노근"
+        url: /docs/brachioradialis-muscle/
+  - title: 몸통
     children:
-      - title: "Stylesheets"
-        url: /docs/stylesheets/
-      - title: "JavaScript"
-        url: /docs/javascript/
-
-  - title: 아래 척추
+      - title: "큰가슴근"
+        url: /docs/pectoralis-major/
+  - title: 아래 몸통
     children:
-      - title: "Stylesheets"
-        url: /docs/stylesheets/
-      - title: "JavaScript"
-        url: /docs/javascript/
+      - title: "허리네모근"
+        url: /docs/quadratus-lumborum-muscle/
+  - title: 엉덩관절, 허벅지, 무릎
+    children:
+      - title: "넓다리근막긴장근"
+        url: /docs/tensor-fasciae-latea-muscle/
+      - title: "넙다리빗근"
+        url: /docs/sartorius-muscle/
+  - title: 다리, 발목, 발
+    children:
+      - title: "앞정강근"
+        url: /docs/tibialis-anterior-muscle/
