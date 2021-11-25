@@ -1,21 +1,10 @@
 ---
-title: "About"
+title: "소개"
 permalink: /about/
-toc: true
 ---
 
-# Hello
+현직 물리치료사입니다.
 
-it's english way, say hello
+상단 근육해부학 메뉴로 들어가면 근육해부학에 관한 문서를 볼 수 있습니다.
 
-## its about page
-
-lorem ipsul
-
-### just test
-
-just test
-
-![icon](https://northwestphysio.com.au/wp-content/uploads/2019/11/1911_What-Can-I-Expect-From-a-Physio-Appointment.png)
-
- <!-- ![icon](/assets/logo.ico/apple-icon-120x120.png) -->
+게시글에서 분류별로, 태그에서 태그별로 게시글을 확인할 수 있습니다.
