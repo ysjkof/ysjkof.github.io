@@ -10,7 +10,7 @@ const Home: NextPage = () => {
         <title>Github Blog | Maib</title>
       </Head>
       <main>
-        <h1>Main</h1>
+        <h1 className="text-red-400">Main</h1>
         <p>초기 설정 중입니다.</p>
         <Link href="/about" as={prefix + "/about"}>
           <a>어바웃으로</a>
