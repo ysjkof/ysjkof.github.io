@@ -3,21 +3,21 @@ import Head from "next/head";
 import Link from "next/link";
 import { prefix } from "../constant";
 
-const Home: NextPage = () => {
+const About: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Github Blog | Maib</title>
+        <title>Github Blog | About</title>
       </Head>
       <main>
-        <h1>Main</h1>
+        <h1>About</h1>
         <p>초기 설정 중입니다.</p>
-        <Link href="/about" as={prefix + "/about"}>
-          <a>어바웃으로</a>
+        <Link href="/" as={prefix + "/"}>
+          <a>메인으로</a>
         </Link>
       </main>
     </>
   );
 };
 
-export default Home;
+export default About;
