@@ -1,0 +1,41 @@
+.markdown-container {
+  background-color: bisque;
+  padding: 0 16px;
+}
+
+.markdown-container h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+.markdown-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-container p {
+  margin-bottom: 2rem;
+}
+
+.markdown-container pre {
+  margin-bottom: 1rem;
+}
+.markdown-container pre > code {
+  background-color: azure;
+}
+.markdown-container code {
+  background-color: cornsilk;
+  padding: 0.1rem 0.6rem;
+  border-radius: 7px;
+}
+
+.markdown-container ul li {
+  list-style: disc;
+  margin-left: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.markdown-container hr {
+  height: 5px;
+  border-color: red;
+}
