@@ -3,7 +3,7 @@ import hljs from "highlight.js/lib/core";
 import hljsJavascript from "highlight.js/lib/languages/javascript";
 import sanitize from "sanitize-html";
 
-const convertMarkdown = (markdown: any) => {
+const handleMarkdown = (markdown: any) => {
   // const renderer = {
   //     heading(text, level) {
   //       const escapedText = text.toLowerCase().replace(/[^\w]+/g, "-");
@@ -39,4 +39,4 @@ const convertMarkdown = (markdown: any) => {
   return parsedHtml;
 };
 
-export default convertMarkdown;
+export default handleMarkdown;
