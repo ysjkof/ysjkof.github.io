@@ -25,52 +25,18 @@ const Post: NextPage<PostProps> = ({ frontMatter, markdownBody }) => {
       <Head>
         <title>Github Blog | Coding</title>
       </Head>
-      <div className="h-screen mx-auto container text-gray-500">
-        <header className="space-x-6 font-semibold text-3xl flex justify-end border-b">
-          <Link href="/" as={prefix + "/"}>
-            <a>메인</a>
-          </Link>
-          <Link href="/about" as={prefix + "/about"}>
-            <a>어바웃</a>
-          </Link>
-        </header>
-        <div className="flex h-full flex-col">
-          <nav className="left-sidebar h-full w-ful border-r">
-            <ul className="flex gap-6">
-              <li className="border-b-2 hover:border-gray-400 border-transparent">
-                <Link href="/" as={prefix + "/"}>
-                  처음화면
-                </Link>
-              </li>
-              <li className="border-b-2 hover:border-gray-400 border-transparent">
-                <Link href="/intro" as={prefix + "/intro"}>
-                  주인이력
-                </Link>
-              </li>
-              <li className="border-b-2 hover:border-gray-400 border-transparent">
-                <Link href="/code" as={prefix + "/coding"}>
-                  코딩기록
-                </Link>
-              </li>
-              <li className="border-b-2 hover:border-gray-400 border-transparent">
-                <Link href="/project" as={prefix + "/project"}>
-                  프로젝트
-                </Link>
-              </li>
-            </ul>
-          </nav>
-          <div className="h-full w-full flex justify-between border-t border-b">
-            {/* <section frontMatter={frontMatter}>
-          
-              />
-            </section> */}
-            <article
-              className="markdown-container"
-              dangerouslySetInnerHTML={{ __html: htmlContent }}
-            />
-          </div>
-        </div>
-      </div>
+      <section className="mx-auto flex h-full">
+        <aside className="w-full">
+          <div className="h-full"></div>
+        </aside>
+        <article
+          className="markdown-container w-full max-w-2xl border-r border-l text-gray-500"
+          dangerouslySetInnerHTML={{ __html: htmlContent }}
+        />
+        <aside className="w-full">
+          <div className="h-full"></div>
+        </aside>
+      </section>
     </>
   );
 };
