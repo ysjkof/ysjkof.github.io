@@ -10,6 +10,7 @@
     "deploy": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll && git add out/ && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages"
   },
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "highlight.js": "^11.4.0",
     "next": "12.1.0",
     "raw-loader": "^4.0.2",
