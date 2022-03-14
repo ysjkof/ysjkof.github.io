@@ -1,6 +1,7 @@
 .markdown-container {
-  background-color: bisque;
+  background-color: rgb(249, 249, 249);
   padding: 0 16px;
+  width: 100%;
 }
 
 .markdown-container h1 {
@@ -36,6 +37,7 @@
 }
 
 .markdown-container hr {
-  height: 5px;
-  border-color: red;
+  border-color: rgb(50, 50, 50);
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }

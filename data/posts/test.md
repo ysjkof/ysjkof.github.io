@@ -1,3 +1,12 @@
+---
+title: 프로그래머스 테스트, 커피오더
+description: 프로그래머스 개발자 채용 시험, SPA를 바닐라js로 만들기
+publishedDate: 2022/03/12
+tags:
+  - markdown
+  - vanillar js
+---
+
 ## 기출문제
 
 기술 : Vanilla JS
