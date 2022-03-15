@@ -37,7 +37,7 @@ const Header: React.FC = () => {
             )}
           >
             <Link href="/coding" as={prefix + "/coding"}>
-              코딩기록
+              코딩공부
             </Link>
           </li>
           <li

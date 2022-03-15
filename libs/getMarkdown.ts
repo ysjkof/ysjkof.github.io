@@ -22,7 +22,9 @@ export async function getPostBySlug(dataType: string, slug: string) {
   };
 }
 
-export async function getAllPostsWithFrontMatter(dataType: string) {
+export async function getAllPostsWithFrontMatter(
+  dataType: string
+): Promise<any[]> {
   const files = fs.readdirSync(path.join(root, "data", dataType));
 
   // @ts-ignore
@@ -32,7 +34,6 @@ export async function getAllPostsWithFrontMatter(dataType: string) {
       "utf8"
     );
     const { data } = matter(source);
-
     return [
       {
         frontMatter: data,

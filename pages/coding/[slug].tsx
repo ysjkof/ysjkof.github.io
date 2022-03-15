@@ -1,14 +1,13 @@
 import { getFiles, getPostBySlug } from "@libs/getMarkdown";
 import handleMarkdown from "@libs/handleMarkdown";
-import { prefix } from "constant";
 import type { NextPage } from "next";
 import { Params } from "next/dist/server/router";
 import Head from "next/head";
-import Link from "next/link";
 
 interface FrontMatter {
   description: string;
   publishedDate: string;
+  lastModifiedAt: string;
   tags: any[];
   title: string;
 }
@@ -19,21 +18,22 @@ interface PostProps {
 
 const Post: NextPage<PostProps> = ({ frontMatter, markdownBody }) => {
   const htmlContent = handleMarkdown(markdownBody);
-  console.log(frontMatter);
+  const { description, publishedDate, lastModifiedAt, tags, title } =
+    frontMatter;
   return (
     <>
       <Head>
         <title>Github Blog | Coding</title>
       </Head>
-      <section className="mx-auto flex h-full">
-        <aside className="w-full">
+      <section className="mx-auto flex h-full min-h-screen justify-between">
+        <aside className="">
           <div className="h-full"></div>
         </aside>
         <article
-          className="markdown-container w-full max-w-2xl border-r border-l text-gray-500"
+          className="markdown-container w-full max-w-2xl text-gray-500"
           dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
-        <aside className="w-full">
+        <aside className="">
           <div className="h-full"></div>
         </aside>
       </section>
