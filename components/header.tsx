@@ -33,7 +33,7 @@ const Header: React.FC = () => {
           <li
             className={cls(
               "flex border-b border-transparent hover:border-sky-300",
-              router.pathname === "/coding" ? "border-sky-500" : ""
+              router.pathname.split("/")[1] === "coding" ? "border-sky-500" : ""
             )}
           >
             <Link href="/coding" as={prefix + "/coding"}>
