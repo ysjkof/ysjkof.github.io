@@ -8,6 +8,20 @@ export async function getFiles(dataType: string) {
   return fs.readdirSync(path.join(root, "data", dataType), "utf-8");
 }
 
+export async function getPostByTag(tagName: string): Promise<{ posts: any[] }> {
+  const posts = await getAllPostsWithFrontMatter("posts");
+
+  const extractPostsByTag = posts.filter((post) => {
+    const index = post.frontMatter.tags.findIndex(
+      (tag: any) => tag === tagName
+    );
+    if (index !== -1) {
+      return posts[index];
+    }
+  });
+  return { posts: extractPostsByTag };
+}
+
 export async function getPostBySlug(dataType: string, slug: string) {
   const source = fs.readFileSync(
     path.join(root, "data", dataType, `${slug}.md`),
@@ -15,7 +29,6 @@ export async function getPostBySlug(dataType: string, slug: string) {
   );
 
   const { data, content } = matter(source);
-
   return {
     frontMatter: data,
     markdownBody: content,
