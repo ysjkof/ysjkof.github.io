@@ -4,30 +4,34 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 
-interface FrontMatter {
+interface IRemoveDuplicationOutput {
+  withDuplicates: ITag[];
+  withoutDuplicates: ITag[];
+}
+interface ITag {
+  name: string;
+  count?: number | string;
+}
+
+interface IFrontMatter {
   description: string;
   publishedDate: string;
   lastModifiedAt: string;
-  tags: any[];
+  tags: string[];
   title: string;
 }
-interface Post {
-  frontMatter: FrontMatter;
+interface IPost {
+  frontMatter: IFrontMatter;
   slug: string;
 }
-interface CodingPostsProps {
+export interface ICodingPostsProps {
   title: string;
   description: string;
-  posts: Post[];
-  tags: string[];
+  posts: IPost[];
+  tags: ITag[];
 }
-const Posts: NextPage<CodingPostsProps> = ({
-  title,
-  description,
-  posts,
-  tags,
-}) => {
-  // console.log(title, description, posts);
+
+const Posts: NextPage<ICodingPostsProps> = ({ posts, tags }) => {
   return (
     <>
       <Head>
@@ -35,9 +39,16 @@ const Posts: NextPage<CodingPostsProps> = ({
       </Head>
       <div className="flex flex-wrap gap-4 px-6 py-4">
         {tags.map((tag) => (
-          <div className="text-sm text-gray-500 hover:font-semibold hover:text-gray-700">
-            #{tag}
-          </div>
+          <Link
+            key={tag.name}
+            href={`/coding/tags/${tag.name}`}
+            as={prefix + `/coding/tags/${tag.name}`}
+          >
+            <a className="space-x-0.5 text-sm text-gray-500 hover:font-semibold hover:text-gray-700">
+              <span>#{tag.name}</span>
+              <span className="text-xs">({tag.count})</span>
+            </a>
+          </Link>
         ))}
       </div>
       {!posts && <div>No posts!</div>}
@@ -59,7 +70,7 @@ const Posts: NextPage<CodingPostsProps> = ({
                   <div className="mb-1 flex justify-between text-xs text-gray-500">
                     <ul className="flex gap-4">
                       {post.frontMatter.tags.map((tag) => (
-                        <li>#{tag}</li>
+                        <li key={tag}>#{tag}</li>
                       ))}
                     </ul>
                     <span>{post.frontMatter.lastModifiedAt}에 수정됨</span>
@@ -91,23 +102,32 @@ export async function getStaticProps() {
   const posts = await getAllPostsWithFrontMatter("posts");
 
   const extractTags = posts.map((post) =>
-    post.frontMatter.tags.map((tag: any) => tag)
+    post.frontMatter.tags.map((tag: string) => tag)
   );
-  const removeDuplication = (array: any[][]) => {
-    const removeDuplication = new Set(
-      array.reduce((prev, current) => prev.concat(current), [])
+  const removeDuplication = (inputArray: any[][]): IRemoveDuplicationOutput => {
+    const withDuplicates = inputArray.reduce(
+      (prev, current) => prev.concat(current),
+      []
     );
-    // @ts-ignore
-    return [...removeDuplication];
+    const withoutDuplicates = [...new Set(withDuplicates)];
+    return { withDuplicates, withoutDuplicates };
   };
-  const tags = removeDuplication(extractTags);
+  const addCount = ({
+    withDuplicates,
+    withoutDuplicates,
+  }: IRemoveDuplicationOutput) => {
+    const count = withoutDuplicates.map((tag) =>
+      withDuplicates.filter((spreadTag) => spreadTag === tag)
+    );
+    const result = count.map((tag) => ({ name: tag[0], count: tag.length }));
+    return result;
+  };
+  const tags = addCount(removeDuplication(extractTags));
 
   return {
     props: {
       posts,
       tags,
-      title: "코딩공부",
-      description: "코딩 공부 하면서 기록",
     },
   };
 }
