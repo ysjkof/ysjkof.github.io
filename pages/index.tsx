@@ -9,7 +9,12 @@ const Home: NextPage = () => {
       <Head>
         <title>Github Blog | Main</title>
       </Head>
-      <section className="w-full">main</section>
+      <section className="w-full">
+        <h1 className="text-red-400">Main</h1>
+        <p className="mt-20 text-center text-2xl text-gray-500">
+          처음화면 준비중
+        </p>
+      </section>
     </>
   );
 };

@@ -11,7 +11,9 @@ const Intro: NextPage = () => {
       </Head>
       <section className="w-full">
         <h1 className="text-red-400">Intro</h1>
-        <p>초기 설정 중입니다.</p>
+        <p className="mt-20 text-center text-2xl text-gray-500">
+          주인이력 준비중
+        </p>
       </section>
     </>
   );
