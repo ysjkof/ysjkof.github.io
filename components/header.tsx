@@ -40,7 +40,7 @@ const Header: React.FC = () => {
               코딩공부
             </Link>
           </li>
-          <li
+          {/* <li
             className={cls(
               "flex border-b border-transparent hover:border-sky-300",
               router.pathname === "/project" ? "border-sky-500" : ""
@@ -49,7 +49,7 @@ const Header: React.FC = () => {
             <Link href="/project" as={prefix + "/project"}>
               프로젝트
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </header>
