@@ -1,4 +1,5 @@
 import { getAllPostsWithFrontMatter } from "@libs/getMarkdown";
+import { FOLDER_NAME_TO_PARSE } from "@libs/utils";
 import { prefix } from "constant";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -99,7 +100,7 @@ const Posts: NextPage<ICodingPostsProps> = ({ posts, tags }) => {
 export default Posts;
 
 export async function getStaticProps() {
-  const posts = await getAllPostsWithFrontMatter("posts");
+  const posts = await getAllPostsWithFrontMatter(FOLDER_NAME_TO_PARSE);
 
   const extractTags = posts.map((post) =>
     post.frontMatter.tags.map((tag: string) => tag)

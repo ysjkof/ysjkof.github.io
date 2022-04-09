@@ -1,5 +1,5 @@
 import { getAllPostsWithFrontMatter, getPostByTag } from "@libs/getMarkdown";
-import { cls } from "@libs/utils";
+import { cls, FOLDER_NAME_TO_PARSE } from "@libs/utils";
 import { prefix } from "constant";
 import type { NextPage } from "next";
 import { Params } from "next/dist/server/router";
@@ -13,8 +13,6 @@ const Tag: NextPage<ICodingPostsProps> = ({ posts, tags }) => {
   const {
     query: { tagName },
   } = router;
-  console.log(tags);
-  console.log(posts);
 
   return (
     <>
@@ -85,7 +83,7 @@ const Tag: NextPage<ICodingPostsProps> = ({ posts, tags }) => {
 export default Tag;
 
 export async function getStaticPaths() {
-  const posts = await getAllPostsWithFrontMatter("posts");
+  const posts = await getAllPostsWithFrontMatter(FOLDER_NAME_TO_PARSE);
 
   const extractTags = posts.map((post) =>
     post.frontMatter.tags.map((tag: any) => tag)

@@ -1,5 +1,6 @@
 import { getFiles, getPostBySlug } from "@libs/getMarkdown";
 import handleMarkdown from "@libs/handleMarkdown";
+import { FOLDER_NAME_TO_PARSE } from "@libs/utils";
 import type { NextPage } from "next";
 import { Params } from "next/dist/server/router";
 import Head from "next/head";
@@ -44,7 +45,7 @@ const Post: NextPage<PostProps> = ({ frontMatter, markdownBody }) => {
 export default Post;
 
 export async function getStaticPaths() {
-  const posts = await getFiles("posts");
+  const posts = await getFiles(FOLDER_NAME_TO_PARSE);
   const paths = posts.map((filename: string) => ({
     params: {
       slug: filename.replace(/\.md/, ""),
@@ -58,7 +59,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: Params) {
   const { frontMatter, markdownBody } = await getPostBySlug(
-    "posts",
+    FOLDER_NAME_TO_PARSE,
     params.slug
   );
 

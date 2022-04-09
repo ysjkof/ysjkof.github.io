@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { FOLDER_NAME_TO_PARSE } from "./utils";
 
 const root = process.cwd();
 
@@ -9,16 +10,15 @@ export async function getFiles(dataType: string) {
 }
 
 export async function getPostByTag(tagName: string): Promise<{ posts: any[] }> {
-  const posts = await getAllPostsWithFrontMatter("posts");
+  const posts = await getAllPostsWithFrontMatter(FOLDER_NAME_TO_PARSE);
 
   const extractPostsByTag = posts.filter((post) => {
-    const index = post.frontMatter.tags.findIndex(
-      (tag: any) => tag === tagName
-    );
-    if (index !== -1) {
-      return posts[index];
+    const index = post.frontMatter.tags.includes(tagName);
+    if (index) {
+      return post;
     }
   });
+
   return { posts: extractPostsByTag };
 }
 
