@@ -30,10 +30,24 @@ const Post: NextPage<PostProps> = ({ frontMatter, markdownBody }) => {
         <aside className="">
           <div className="h-full"></div>
         </aside>
-        <article
-          className="markdown-container w-full max-w-2xl text-gray-500"
-          dangerouslySetInnerHTML={{ __html: htmlContent }}
-        />
+        <article className="w-full max-w-2xl text-gray-500">
+          <div className="mb-2 flex justify-end space-x-4 text-xs">
+            <span>발행: {publishedDate}</span>
+            <span>수정: {lastModifiedAt}</span>
+          </div>
+          <ul className="mb-6 flex list-none justify-end gap-6">
+            {tags.map((tag, i) => (
+              <li key={i} className="list-none">
+                #{tag}
+              </li>
+            ))}
+          </ul>
+          <h1 className="mb-5 border-b text-3xl font-semibold">{title}</h1>
+          <p
+            className="markdown-container "
+            dangerouslySetInnerHTML={{ __html: htmlContent }}
+          />
+        </article>
         <aside className="">
           <div className="h-full"></div>
         </aside>
