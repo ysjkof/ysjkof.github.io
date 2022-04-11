@@ -4,7 +4,7 @@ const GITHUB_REPOSITORY_NAME = "ysjkof.github.io";
 
 const nextConfig = {
   reactStrictMode: true,
-  assetPrefix: !debug ? `/${GITHUB_REPOSITORY_NAME}/` : "",
+  // assetPrefix: !debug ? `/${GITHUB_REPOSITORY_NAME}/` : "",
   webpack: (config) => {
     config.module.rules.push({
       test: /\.md$/,
