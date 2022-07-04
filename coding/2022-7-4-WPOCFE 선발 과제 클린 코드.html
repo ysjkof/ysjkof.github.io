@@ -1,0 +1,91 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><title>Github Blog | Coding</title><meta name="next-head-count" content="3"/><link rel="preload" href="/_next/static/css/a309366faaf5640d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/a309366faaf5640d.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script src="/_next/static/chunks/webpack-fd82975a6094609f.js" defer=""></script><script src="/_next/static/chunks/framework-fc97f3f1282ce3ed.js" defer=""></script><script src="/_next/static/chunks/main-551bef8982a15171.js" defer=""></script><script src="/_next/static/chunks/pages/_app-67d25757e67bd6f1.js" defer=""></script><script src="/_next/static/chunks/966-f73553dab6aa6822.js" defer=""></script><script src="/_next/static/chunks/pages/coding/%5Bslug%5D-7ebbc302f0094246.js" defer=""></script><script src="/_next/static/JBQ2bKE-V72qcy-CeDYKW/_buildManifest.js" defer=""></script><script src="/_next/static/JBQ2bKE-V72qcy-CeDYKW/_ssgManifest.js" defer=""></script><script src="/_next/static/JBQ2bKE-V72qcy-CeDYKW/_middlewareManifest.js" defer=""></script></head><body><div id="__next"><div class="text-gray-700"><header class="border-b text-2xl font-medium"><nav class="w-ful container mx-auto h-full"><ul class="flex w-full justify-end gap-8"><li class="flex border-b border-transparent hover:border-sky-300 "><a href="/">처음화면</a></li><li class="flex border-b border-transparent hover:border-sky-300 "><a href="/intro">주인이력</a></li><li class="flex border-b border-transparent hover:border-sky-300 border-sky-500"><a href="/coding">코딩공부</a></li></ul></nav></header><main class="container mx-auto h-full"><section class="mx-auto flex h-full min-h-screen justify-between"><aside class=""><div class="h-full"></div></aside><article class="w-full max-w-2xl text-gray-500"><div class="mb-2 flex justify-end space-x-4 text-xs"><span>발행: <!-- -->2022/07/04<!-- --></span><span>수정: <!-- -->2022/07/04<!-- --></span></div><ul class="mb-6 flex list-none justify-end gap-6"><li class="list-none">#<!-- -->WPOCFE<!-- --></li><li class="list-none">#<!-- -->원티드 프리온보드 프론트엔드 코스<!-- --></li></ul><h1 class="mb-5 border-b text-3xl font-semibold">WPOCFE 선발 과제 클린 코드하기</h1><p class="markdown-container "><h1 id="1-학습목표">1. 학습목표</h1>
+<ol>
+<li><code>Clean Code</code>를 작성하는 것이 중요한 이유에 대해 설명할 수 있다.</li>
+<li>변수와 관련된 규칙 2가지를 설명할 수 있다.</li>
+<li><code>조건문</code>이 아닌 기본 <code>매개변수</code>를 활용하여 함수를 깔끔하게 처리할 수 있다.</li>
+<li>함수와 관련된 규칙 3가지를 설명할 수 있다.</li>
+</ol>
+<h2 id="1a-대답">1.A. 대답</h2>
+<p>참조 : <a href="https://github.com/qkraudghgh/clean-code-javascript-ko">clean-code-javascript-ko</a></p>
+<h3 id="1a1-clean-code를-작성의-이유">1.A.1. Clean Code를 작성의 이유</h3>
+<p>코드의 가독성을 높여서 남이나 기억을 잃어버린 미래의 본인도 의미파악을 쉽게 하려고.</p>
+<h3 id="1a2-변수와-관련된-규칙">1.A.2. 변수와 관련된 규칙</h3>
+<ul>
+<li>의미있고 발음이 쉬운 이름</li>
+<li>동일한 유형에는 동일한 어휘를 사용</li>
+<li>검색 가능한 이름을 사용</li>
+<li>의도를 나타내는 이름 사용</li>
+<li>누구나 알아 볼 수 있는 이름</li>
+<li>문맥상 필요없는 것 쓰지 않기</li>
+<li>연산자, 조건문보다 기본 매개변수 할당</li>
+</ul>
+<h3 id="1a2-조건문이-아닌-기본-매개변수를-활용하여-함수를-깔끔하게-처리">1.A.2. <code>조건문</code>이 아닌 <code>기본 매개변수</code>를 활용하여 함수를 깔끔하게 처리</h3>
+<pre><code class="hljs language-js"><span class="hljs-comment">// 조건문 사용</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">createAccount</span>(<span class="hljs-params">name</span>) {
+  <span class="hljs-keyword">return</span> name || <span class="hljs-string">&quot;아무개&quot;</span>;
+}
+<span class="hljs-comment">// 기본 매개변수 사용</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">createAccount</span>(<span class="hljs-params">name = <span class="hljs-string">&quot;아무개&quot;</span></span>) {
+  <span class="hljs-keyword">return</span> name;
+}
+
+<span class="hljs-title function_">createAccount</span>(); <span class="hljs-comment">// name이 undefined일 때 아무개 반환</span>
+</code></pre>
+<h3 id="1a3-함수와-관련된-규칙">1.A.3. 함수와 관련된 규칙</h3>
+<ul>
+<li>인자는 2개 이하가 이상적</li>
+<li>하나의 행동만 한다</li>
+<li>함수명은 함수가 뭘 하는지 알 수 있어야 한다</li>
+<li>함수는 단일 행동을 추상화 해야 한다</li>
+<li>중복된 코드 작성 하지 않기</li>
+<li>매개변수로 플래그를 사용치 않기</li>
+<li>부수 효과 피하기</li>
+<li>전역 함수 사용치 않기</li>
+<li>조건문 캡슐화 하기</li>
+<li>부정조건문 사용치 않기</li>
+<li>조건문 작성 피하기</li>
+<li>죽은 코드 지우기</li>
+<li>함수 호출자와 피호출자는 가깝게 두기</li>
+<li>주석을 남기지 않기</li>
+</ul>
+<h1 id="2-q">2. Q.</h1>
+<pre><code class="hljs language-js"><span class="hljs-title class_">Bad</span>:
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Car</span> = {
+  <span class="hljs-attr">carMake</span>: <span class="hljs-string">&#x27;BMW&#x27;</span>,
+  <span class="hljs-attr">carModel</span>: <span class="hljs-string">&#x27;M3&#x27;</span>,
+  <span class="hljs-attr">carColor</span>: <span class="hljs-string">&#x27;파란색&#x27;</span>
+};
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">paintCar</span>(<span class="hljs-params">car</span>) {
+  car.<span class="hljs-property">carColor</span> = <span class="hljs-string">&#x27;빨간색&#x27;</span>;
+}
+
+<span class="hljs-title class_">Good</span>:
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Car</span> = {
+  <span class="hljs-attr">make</span>: <span class="hljs-string">&#x27;BMW&#x27;</span>,
+  <span class="hljs-attr">model</span>: <span class="hljs-string">&#x27;M3&#x27;</span>,
+  <span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;파란색&#x27;</span>
+};
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">paintCar</span>(<span class="hljs-params">car</span>) {
+  car.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;빨간색&#x27;</span>;
+}
+
+
+<span class="hljs-keyword">const</span> user = {
+    <span class="hljs-attr">userName</span>:<span class="hljs-string">&quot;조인호&quot;</span>,
+    <span class="hljs-attr">userAddress</span>: <span class="hljs-string">&quot;서울&quot;</span>,
+    <span class="hljs-attr">userAge</span>:<span class="hljs-string">&quot;39&quot;</span>
+}
+</code></pre>
+<ul>
+<li><p>Car 객체 안에 carColor는 문맥상 반드시 필요할까요?</p>
+</li>
+<li><p>매개변수란?</p>
+</li>
+<li><p><code>||</code> 연산자는 무엇이고 언제 사용할까요?</p>
+</li>
+<li><p>캡슐화란 무엇인가? (그룹 과제)</p>
+</li>
+</ul>
+</p></article><aside class=""><div class="h-full"></div></aside></section></main></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"frontMatter":{"title":"WPOCFE 선발 과제 클린 코드하기","description":"선발 과제를 클린 코드 규칙에 따라 리펙토링 한다","tags":["WPOCFE","원티드 프리온보드 프론트엔드 코스"],"publishedDate":"2022/07/04","lastModifiedAt":"2022/07/04"},"markdownBody":"\n# 1. 학습목표\n\n1. `Clean Code`를 작성하는 것이 중요한 이유에 대해 설명할 수 있다.\n2. 변수와 관련된 규칙 2가지를 설명할 수 있다.\n3. `조건문`이 아닌 기본 `매개변수`를 활용하여 함수를 깔끔하게 처리할 수 있다.\n4. 함수와 관련된 규칙 3가지를 설명할 수 있다.\n\n## 1.A. 대답\n\n참조 : [clean-code-javascript-ko](https://github.com/qkraudghgh/clean-code-javascript-ko)\n\n### 1.A.1. Clean Code를 작성의 이유\n\n코드의 가독성을 높여서 남이나 기억을 잃어버린 미래의 본인도 의미파악을 쉽게 하려고.\n\n### 1.A.2. 변수와 관련된 규칙\n\n- 의미있고 발음이 쉬운 이름\n- 동일한 유형에는 동일한 어휘를 사용\n- 검색 가능한 이름을 사용\n- 의도를 나타내는 이름 사용\n- 누구나 알아 볼 수 있는 이름\n- 문맥상 필요없는 것 쓰지 않기\n- 연산자, 조건문보다 기본 매개변수 할당\n\n### 1.A.2. `조건문`이 아닌 `기본 매개변수`를 활용하여 함수를 깔끔하게 처리\n\n```js\n// 조건문 사용\nfunction createAccount(name) {\n  return name || \"아무개\";\n}\n// 기본 매개변수 사용\nfunction createAccount(name = \"아무개\") {\n  return name;\n}\n\ncreateAccount(); // name이 undefined일 때 아무개 반환\n```\n\n### 1.A.3. 함수와 관련된 규칙\n\n- 인자는 2개 이하가 이상적\n- 하나의 행동만 한다\n- 함수명은 함수가 뭘 하는지 알 수 있어야 한다\n- 함수는 단일 행동을 추상화 해야 한다\n- 중복된 코드 작성 하지 않기\n- 매개변수로 플래그를 사용치 않기\n- 부수 효과 피하기\n- 전역 함수 사용치 않기\n- 조건문 캡슐화 하기\n- 부정조건문 사용치 않기\n- 조건문 작성 피하기\n- 죽은 코드 지우기\n- 함수 호출자와 피호출자는 가깝게 두기\n- 주석을 남기지 않기\n\n# 2. Q.\n\n```js\nBad:\nconst Car = {\n  carMake: 'BMW',\n  carModel: 'M3',\n  carColor: '파란색'\n};\n\nfunction paintCar(car) {\n  car.carColor = '빨간색';\n}\n\nGood:\nconst Car = {\n  make: 'BMW',\n  model: 'M3',\n  color: '파란색'\n};\n\nfunction paintCar(car) {\n  car.color = '빨간색';\n}\n\n\nconst user = {\n\tuserName:\"조인호\",\n\tuserAddress: \"서울\",\n\tuserAge:\"39\"\n}\n```\n\n- Car 객체 안에 carColor는 문맥상 반드시 필요할까요?\n\n- 매개변수란?\n\n- `||` 연산자는 무엇이고 언제 사용할까요?\n\n- 캡슐화란 무엇인가? (그룹 과제)\n"},"__N_SSG":true},"page":"/coding/[slug]","query":{"slug":"2022-7-4-WPOCFE 선발 과제 클린 코드"},"buildId":"JBQ2bKE-V72qcy-CeDYKW","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
