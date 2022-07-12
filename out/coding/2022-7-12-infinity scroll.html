@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><title>Github Blog | Coding</title><meta name="next-head-count" content="3"/><link rel="preload" href="/_next/static/css/a309366faaf5640d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/a309366faaf5640d.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script src="/_next/static/chunks/webpack-fd82975a6094609f.js" defer=""></script><script src="/_next/static/chunks/framework-fc97f3f1282ce3ed.js" defer=""></script><script src="/_next/static/chunks/main-551bef8982a15171.js" defer=""></script><script src="/_next/static/chunks/pages/_app-67d25757e67bd6f1.js" defer=""></script><script src="/_next/static/chunks/966-f73553dab6aa6822.js" defer=""></script><script src="/_next/static/chunks/pages/coding/%5Bslug%5D-7ebbc302f0094246.js" defer=""></script><script src="/_next/static/YdBTO-yDi6HQogYXfTvC6/_buildManifest.js" defer=""></script><script src="/_next/static/YdBTO-yDi6HQogYXfTvC6/_ssgManifest.js" defer=""></script><script src="/_next/static/YdBTO-yDi6HQogYXfTvC6/_middlewareManifest.js" defer=""></script></head><body><div id="__next"><div class="text-gray-700"><header class="border-b text-2xl font-medium"><nav class="w-ful container mx-auto h-full"><ul class="flex w-full justify-end gap-8"><li class="flex border-b border-transparent hover:border-sky-300 "><a href="/">처음화면</a></li><li class="flex border-b border-transparent hover:border-sky-300 "><a href="/intro">주인이력</a></li><li class="flex border-b border-transparent hover:border-sky-300 border-sky-500"><a href="/coding">코딩공부</a></li></ul></nav></header><main class="container mx-auto h-full"><section class="mx-auto flex h-full min-h-screen justify-between"><aside class=""><div class="h-full"></div></aside><article class="w-full max-w-2xl text-gray-500"><div class="mb-2 flex justify-end space-x-4 text-xs"><span>발행: <!-- -->2022/07/12<!-- --></span><span>수정: <!-- -->2022/07/12<!-- --></span></div><ul class="mb-6 flex list-none justify-end gap-6"><li class="list-none">#<!-- -->리액트 코드(+React)<!-- --></li></ul><h1 class="mb-5 border-b text-3xl font-semibold">무한 스크롤(infinity scroll)</h1><p class="markdown-container "><h1 id="무한-스크롤infinity-scroll">무한 스크롤(infinity scroll)</h1>
+<p>브라우저의 스크롤이 화면의 끝에 갔을 때 자료를 더 불러와서 정보를 더 표현하는 기능</p>
+<ul>
+<li>한 번에 화면 크기 정도의 자료를 불러오고 필요할 때(화면 끝에 갔을 때) 더 정보를 불러온다.</li>
+<li>백엔드에서 받을 자료를 조금씩 요청하기 때문에 데이터량을 절약한다.</li>
+<li>백엔드에서 자료를 조금씩 받기 때문에 클라이언트의 부하가 감소한다.</li>
+</ul>
+<pre><code class="hljs language-tsx"><span class="hljs-comment">// useIntersectionObserver.ts</span>
+<span class="hljs-keyword">import</span> { useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">root</span>: <span class="hljs-literal">null</span>, <span class="hljs-comment">// 뷰포트로 사용할 요소, 기본값은 브라우저의 뷰포트. react의 useRef나 querySelector로 html element를 정할 수 있다</span>
+  <span class="hljs-attr">rootMargin</span>: <span class="hljs-string">&quot;0px&quot;</span>, <span class="hljs-comment">// 기본값은 0. 단위는 px나 % 사용</span>
+  <span class="hljs-attr">threshold</span>: <span class="hljs-number">0.5</span>, <span class="hljs-comment">// 요소의 몇 %가 보일때 작동할 것인지(0~1 사이의 값)</span>
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">useIntersectionObserver</span> = (<span class="hljs-params">
+  ref: React.RefObject&lt;HTMLDivElement&gt;,
+  calback: () =&gt; <span class="hljs-keyword">void</span>
+</span>) =&gt; {
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">intersectionCalback</span> = (<span class="hljs-params">[entry]: IntersectionObserverEntry[]</span>) =&gt; {
+    <span class="hljs-keyword">if</span> (entry.<span class="hljs-property">isIntersecting</span>) <span class="hljs-title function_">calback</span>();
+  };
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IntersectionObserver</span>(intersectionCalback, options);
+    <span class="hljs-keyword">if</span> (ref.<span class="hljs-property">current</span>) {
+      observer.<span class="hljs-title function_">observe</span>(ref.<span class="hljs-property">current</span>);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> observer.<span class="hljs-title function_">disconnect</span>();
+  }, [ref]);
+  <span class="hljs-keyword">return</span> [ref];
+};
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useIntersectionObserver;
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Home.tsx</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Home</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> { getMovies, movies } = <span class="hljs-title function_">useMovie</span>();
+  <span class="hljs-keyword">const</span> [pageNumber, setPageNumber] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">const</span> intersectionRef = useRef &lt; <span class="hljs-title class_">HTMLDivElement</span> &gt; <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">intersectionCalback</span> = (<span class="hljs-params"></span>) =&gt; {
+    <span class="hljs-comment">// 2. setPageNumber가 작동한다</span>
+    <span class="hljs-title function_">setPageNumber</span>(<span class="hljs-function">(<span class="hljs-params">prev</span>) =&gt;</span> prev + <span class="hljs-number">1</span>);
+  };
+  <span class="hljs-title function_">useIntersectionObserver</span>(intersectionRef, intersectionCalback);
+
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// 3. setPageNumber가 작동하면 pageNumber를 useEffect가 감지하고 변한 pageNumber로 getMovies를 수행한다</span>
+    <span class="hljs-title function_">getMovies</span>(pageNumber);
+  }, [pageNumber]);
+
+  <span class="hljs-keyword">return</span> (
+    &lt;div&gt;
+      &lt;Movies&gt;
+        // 4. getMovies가 새로운 movies를 반환하고 Movie가 추가된다
+        {movies?.map((movie) =&gt; (
+          &lt;Movie key={movie.id} movie={movie} /&gt;
+        ))}
+      &lt;/Movies&gt;
+      // 1. IntersectionArea이 뷰포트에 나타나면,
+      &lt;IntersectionArea ref={intersectionRef} /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+</p></article><aside class=""><div class="h-full"></div></aside></section></main></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"frontMatter":{"title":"무한 스크롤(infinity scroll)","description":null,"tags":["리액트 코드(+React)"],"publishedDate":"2022/07/12","lastModifiedAt":"2022/07/12"},"markdownBody":"\n# 무한 스크롤(infinity scroll)\n\n브라우저의 스크롤이 화면의 끝에 갔을 때 자료를 더 불러와서 정보를 더 표현하는 기능\n\n- 한 번에 화면 크기 정도의 자료를 불러오고 필요할 때(화면 끝에 갔을 때) 더 정보를 불러온다.\n- 백엔드에서 받을 자료를 조금씩 요청하기 때문에 데이터량을 절약한다.\n- 백엔드에서 자료를 조금씩 받기 때문에 클라이언트의 부하가 감소한다.\n\n```tsx\n// useIntersectionObserver.ts\nimport { useEffect } from \"react\";\n\nconst options = {\n  root: null, // 뷰포트로 사용할 요소, 기본값은 브라우저의 뷰포트. react의 useRef나 querySelector로 html element를 정할 수 있다\n  rootMargin: \"0px\", // 기본값은 0. 단위는 px나 % 사용\n  threshold: 0.5, // 요소의 몇 %가 보일때 작동할 것인지(0~1 사이의 값)\n};\n\nconst useIntersectionObserver = (\n  ref: React.RefObject\u003cHTMLDivElement\u003e,\n  calback: () =\u003e void\n) =\u003e {\n  const intersectionCalback = ([entry]: IntersectionObserverEntry[]) =\u003e {\n    if (entry.isIntersecting) calback();\n  };\n  useEffect(() =\u003e {\n    const observer = new IntersectionObserver(intersectionCalback, options);\n    if (ref.current) {\n      observer.observe(ref.current);\n    }\n    return () =\u003e observer.disconnect();\n  }, [ref]);\n  return [ref];\n};\nexport default useIntersectionObserver;\n\n// ...\n\n// Home.tsx\nfunction Home() {\n  const { getMovies, movies } = useMovie();\n  const [pageNumber, setPageNumber] = useState(1);\n\n  const intersectionRef = useRef \u003c HTMLDivElement \u003e null;\n  const intersectionCalback = () =\u003e {\n    // 2. setPageNumber가 작동한다\n    setPageNumber((prev) =\u003e prev + 1);\n  };\n  useIntersectionObserver(intersectionRef, intersectionCalback);\n\n  useEffect(() =\u003e {\n    // 3. setPageNumber가 작동하면 pageNumber를 useEffect가 감지하고 변한 pageNumber로 getMovies를 수행한다\n    getMovies(pageNumber);\n  }, [pageNumber]);\n\n  return (\n    \u003cdiv\u003e\n      \u003cMovies\u003e\n        // 4. getMovies가 새로운 movies를 반환하고 Movie가 추가된다\n        {movies?.map((movie) =\u003e (\n          \u003cMovie key={movie.id} movie={movie} /\u003e\n        ))}\n      \u003c/Movies\u003e\n      // 1. IntersectionArea이 뷰포트에 나타나면,\n      \u003cIntersectionArea ref={intersectionRef} /\u003e\n    \u003c/div\u003e\n  );\n}\n```\n"},"__N_SSG":true},"page":"/coding/[slug]","query":{"slug":"2022-7-12-infinity scroll"},"buildId":"YdBTO-yDi6HQogYXfTvC6","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
