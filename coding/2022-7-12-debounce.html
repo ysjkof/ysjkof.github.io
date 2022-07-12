@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><title>Github Blog | Coding</title><meta name="next-head-count" content="3"/><link rel="preload" href="/_next/static/css/a309366faaf5640d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/a309366faaf5640d.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script src="/_next/static/chunks/webpack-fd82975a6094609f.js" defer=""></script><script src="/_next/static/chunks/framework-fc97f3f1282ce3ed.js" defer=""></script><script src="/_next/static/chunks/main-551bef8982a15171.js" defer=""></script><script src="/_next/static/chunks/pages/_app-67d25757e67bd6f1.js" defer=""></script><script src="/_next/static/chunks/966-f73553dab6aa6822.js" defer=""></script><script src="/_next/static/chunks/pages/coding/%5Bslug%5D-7ebbc302f0094246.js" defer=""></script><script src="/_next/static/YdBTO-yDi6HQogYXfTvC6/_buildManifest.js" defer=""></script><script src="/_next/static/YdBTO-yDi6HQogYXfTvC6/_ssgManifest.js" defer=""></script><script src="/_next/static/YdBTO-yDi6HQogYXfTvC6/_middlewareManifest.js" defer=""></script></head><body><div id="__next"><div class="text-gray-700"><header class="border-b text-2xl font-medium"><nav class="w-ful container mx-auto h-full"><ul class="flex w-full justify-end gap-8"><li class="flex border-b border-transparent hover:border-sky-300 "><a href="/">처음화면</a></li><li class="flex border-b border-transparent hover:border-sky-300 "><a href="/intro">주인이력</a></li><li class="flex border-b border-transparent hover:border-sky-300 border-sky-500"><a href="/coding">코딩공부</a></li></ul></nav></header><main class="container mx-auto h-full"><section class="mx-auto flex h-full min-h-screen justify-between"><aside class=""><div class="h-full"></div></aside><article class="w-full max-w-2xl text-gray-500"><div class="mb-2 flex justify-end space-x-4 text-xs"><span>발행: <!-- -->2022/07/12<!-- --></span><span>수정: <!-- -->2022/07/12<!-- --></span></div><ul class="mb-6 flex list-none justify-end gap-6"><li class="list-none">#<!-- -->자바스크립트 코드(+React)<!-- --></li><li class="list-none">#<!-- -->성능 최적화<!-- --></li></ul><h1 class="mb-5 border-b text-3xl font-semibold">디바운스란? (Debounce)</h1><p class="markdown-container "><h1 id="디바운스란-debounce">디바운스란? (debounce)</h1>
+<p><code>사과</code>를 검색한다면 ㅅ, ㅏ, ㄱ, ㅗ, ㅏ 이렇게 자모음 한자씩 입력할때마다 api를 불러올 필요는 없다. 그래서 문장을 전부 완성하고 나서 작업을 수행할 수 있게 하는 기능이다.</p>
+<ul>
+<li>연속된 이벤트가 발생할 경우 마지막 이벤트 한 번만 실행한다.</li>
+<li>javascript <code>setTimeout</code>으로 단순하게 구현할 수 있다.</li>
+<li><a href="https://lodash.com/">lodash</a>에 디바운스 기능이 있다. <code>setTimeout</code>이 아니다.</li>
+</ul>
+<pre><code class="hljs language-js"><span class="hljs-comment">// debounce.js</span>
+<span class="hljs-keyword">let</span> timer = <span class="hljs-literal">undefined</span>;
+<span class="hljs-keyword">let</span> apiCallNumber = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">debouunce</span>(<span class="hljs-params">callback, { timeout = <span class="hljs-number">500</span> }</span>) {
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">timerHandler</span> = (<span class="hljs-params"></span>) =&gt; {
+    <span class="hljs-title function_">callback</span>();
+    apiCallNumber = apiCallNumber + <span class="hljs-number">1</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Api call number :&quot;</span>, apiCallNumber);
+  };
+
+  <span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);
+  timer = <span class="hljs-built_in">setTimeout</span>(timerHandler, timeout);
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> debouunce;
+
+<span class="hljs-comment">// SearchForm.jsx</span>
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">const</span> [words, setWords] = <span class="hljs-title function_">useState</span>([]);
+<span class="hljs-keyword">const</span> searchInputRef = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">getAutoComplete</span> = (<span class="hljs-params">event</span>) =&gt; {
+  event.<span class="hljs-title function_">preventDefault</span>();
+
+  <span class="hljs-keyword">const</span> term = searchInputRef.<span class="hljs-property">current</span>?.<span class="hljs-property">value</span>;
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">invokeAutoComplete</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">if</span> (!term) <span class="hljs-keyword">return</span> <span class="hljs-title function_">setWords</span>([]);
+
+    <span class="hljs-comment">// checkFuzzyStringMatch()이 비용이 큰 작업이라면 수행을 최소화한다</span>
+    <span class="hljs-keyword">let</span> titles = <span class="hljs-title function_">checkFuzzyStringMatch</span>(term);
+    <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isZeroLengthArray</span>(titles)) titles = [<span class="hljs-string">&quot;검색어 없음&quot;</span>];
+    <span class="hljs-title function_">setWords</span>(titles);
+  }
+
+  <span class="hljs-title function_">debouunce</span>(invokeAutoComplete, { <span class="hljs-attr">timeout</span>: <span class="hljs-number">200</span> });
+};
+
+<span class="hljs-keyword">return</span> (
+  &lt;form&gt;
+    &lt;input type={&quot;search&quot;} ref={searchInputRef} onChange={getAutoComplete} /&gt;
+  &lt;/form&gt;
+);
+</code></pre>
+</p></article><aside class=""><div class="h-full"></div></aside></section></main></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"frontMatter":{"title":"디바운스란? (Debounce)","description":null,"tags":["자바스크립트 코드(+React)","성능 최적화"],"publishedDate":"2022/07/12","lastModifiedAt":"2022/07/12"},"markdownBody":"\n# 디바운스란? (debounce)\n\n`사과`를 검색한다면 ㅅ, ㅏ, ㄱ, ㅗ, ㅏ 이렇게 자모음 한자씩 입력할때마다 api를 불러올 필요는 없다. 그래서 문장을 전부 완성하고 나서 작업을 수행할 수 있게 하는 기능이다.\n\n- 연속된 이벤트가 발생할 경우 마지막 이벤트 한 번만 실행한다.\n- javascript `setTimeout`으로 단순하게 구현할 수 있다.\n- [lodash](https://lodash.com/)에 디바운스 기능이 있다. `setTimeout`이 아니다.\n\n```js\n// debounce.js\nlet timer = undefined;\nlet apiCallNumber = 0;\n\nfunction debouunce(callback, { timeout = 500 }) {\n  const timerHandler = () =\u003e {\n    callback();\n    apiCallNumber = apiCallNumber + 1;\n    console.log(\"Api call number :\", apiCallNumber);\n  };\n\n  if (timer) clearTimeout(timer);\n  timer = setTimeout(timerHandler, timeout);\n}\n\nexport default debouunce;\n\n// SearchForm.jsx\n// ...\nconst [words, setWords] = useState([]);\nconst searchInputRef = useRef(null);\n\nconst getAutoComplete = (event) =\u003e {\n  event.preventDefault();\n\n  const term = searchInputRef.current?.value;\n  function invokeAutoComplete() {\n    if (!term) return setWords([]);\n\n    // checkFuzzyStringMatch()이 비용이 큰 작업이라면 수행을 최소화한다\n    let titles = checkFuzzyStringMatch(term);\n    if (isZeroLengthArray(titles)) titles = [\"검색어 없음\"];\n    setWords(titles);\n  }\n\n  debouunce(invokeAutoComplete, { timeout: 200 });\n};\n\nreturn (\n  \u003cform\u003e\n    \u003cinput type={\"search\"} ref={searchInputRef} onChange={getAutoComplete} /\u003e\n  \u003c/form\u003e\n);\n```\n"},"__N_SSG":true},"page":"/coding/[slug]","query":{"slug":"2022-7-12-debounce"},"buildId":"YdBTO-yDi6HQogYXfTvC6","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
